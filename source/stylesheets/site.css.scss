@@ -94,9 +94,10 @@ p {
   padding: 8px;
 }
 
+/* Switch: make vertical like an Edison pull switch */
 .switch-track {
-  width: 50px;
-  height: 24px;
+  width: 24px; /* vertical */
+  height: 50px;
   background: rgba(255, 255, 255, 0.06);
   border-radius: 12px;
   position: relative;
@@ -107,17 +108,42 @@ p {
 .switch-thumb {
   width: 20px;
   height: 20px;
-  background: #6aa0bd;
+  background: #6aa0bd; /* overridden per theme */
   border-radius: 50%;
   position: absolute;
-  top: 1px;
+  top: 1px; /* rests at top by default (rustic/dark) */
   left: 1px;
-  transition: left 0.2s ease;
+  transition: top 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 12px;
   color: #0f1416;
+}
+
+/* Rustic dark switch colors already defined below */
+
+/* Edison-like light mode: warmer bulb color and glow, thumb at bottom */
+body.light-mode .switch-track { background: rgba(164, 124, 87, 0.18); border-color: rgba(164, 124, 87, 0.22); }
+body.light-mode .switch-thumb {
+  background: #e6b676; /* warm filament */
+  color: #2a2622;
+  top: 29px; /* move down to simulate pull switch */
+  box-shadow: 0 0 10px rgba(230, 182, 118, 0.6), 0 0 20px rgba(230, 182, 118, 0.35);
+}
+
+/* Dark rustic switch */
+body.rustic-mode .switch-track { background: rgba(192, 149, 104, 0.18); border-color: rgba(192, 149, 104, 0.22); }
+body.rustic-mode .switch-thumb { background: #c09568; color: #191715; top: 1px; box-shadow: none; }
+
+body.light-mode .switch-track {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.light-mode .switch-thumb {
+  background: #6aa0bd;
+  left: 1px;
 }
 
 body.light-mode .switch-track {
@@ -145,72 +171,60 @@ body.light-mode .switch-thumb {
 
 /* Light mode styles */
 body.light-mode {
-  background: #f1f3f5;
-  color: #3b3f42;
+  background: #d9d0c2; /* deeper parchment */
+  color: #352f2a;
 }
 
 body.light-mode #box {
-  background: #ffffff;
-  border: 1px solid #e5e7ea;
+  background: #ede4d6;
+  border: 1px solid #cdbfae;
 }
 
-body.light-mode .hero-title { color: #111; }
-body.light-mode .hero-subtitle { color: #5c6b73; }
-body.light-mode .hero-description { color: #6b7276; }
+body.light-mode .hero-title { color: #221f1c; }
+body.light-mode .hero-subtitle { color: #9a744f; }
+body.light-mode .hero-description { color: #4e473f; }
 
-body.light-mode .section-title {
-  color: #111;
-  border-bottom: 1px solid #c9cdd2;
-}
+body.light-mode .section-title { color: #221f1c; border-bottom: 1px solid #c2b29e; }
 
-body.light-mode .about-description { color: #495057; }
-body.light-mode .skills-container h3 { color: #495057; }
+body.light-mode .about-description { color: #48413a; }
+body.light-mode .skills-container h3 { color: #9a744f; }
 
-body.light-mode .skill-item {
-  background: #f6f7f8;
-  border: 1px solid #e1e4e8;
-  color: #495057;
-}
+body.light-mode .skill-item { background: #e8ddce; border: 1px solid #ccbea9; color: #48413a; }
+body.light-mode .skill-item:hover { background: #e3d8c7; }
+body.light-mode .timeline-content h4 { color: #9a744f; }
+body.light-mode .timeline-content p { color: #625a52; }
 
-body.light-mode .skill-item:hover { background: #eef1f3; }
-body.light-mode .timeline-content h4 { color: #495057; }
-body.light-mode .timeline-content p { color: #6c757d; }
+body.light-mode .project-card { background: #f4eadc; border: 1px solid #d3c4af; }
+body.light-mode .project-title { color: #221f1c; }
+body.light-mode .project-description { color: #4e473f; }
 
-body.light-mode .project-card {
-  background: #ffffff;
-  border: 1px solid #e5e7ea;
-}
+body.light-mode .tech-tag { background: #ece1d2; border: 1px solid #d3c4af; color: #826349; }
 
-body.light-mode .project-title { color: #111; }
-body.light-mode .project-description { color: #495057; }
+body.light-mode .contact-text { color: #48413a; }
+body.light-mode .contact-link { border: 1px solid #cdbfae; color: #826349; }
+body.light-mode .contact-link:hover { background: #e4d7c5; color: #221f1c; }
 
-body.light-mode .tech-tag {
-  background: #f3f6f8;
-  border: 1px solid #e5e7ea;
-  color: #5c6b73;
-}
+/* Buttons */
+body.light-mode .btn-primary { background: #9c7758; border-color: #9c7758; color: #fff7ef; }
+body.light-mode .btn-primary:hover { background: #8e6c51; border-color: #8e6c51; }
+body.light-mode .btn-secondary { color: #826349; border-color: #826349; }
+body.light-mode .btn-secondary:hover { background: #826349; color: #fff7ef; }
 
-body.light-mode .contact-text { color: #495057; }
+/* Navbar */
+body.light-mode #navbar { justify-content: flex-start; padding-left: 36px; }
+body.light-mode ul { background: transparent; border: none; backdrop-filter: none; gap: 28px; padding: 0; border-radius: 0; }
+body.light-mode li:hover { border-bottom-color: #9a744f; }
+body.light-mode li.active { border-bottom-color: #9a744f; }
+body.light-mode ul li a { color: #352f2a; font-weight: 500; }
+body.light-mode li.active a { color: #9a744f; }
 
-body.light-mode .contact-link {
-  border: 1px solid #d5dadd;
-  color: #495057;
-}
+/* Progress bar dimmer */
+body.light-mode .scroll-progress { background: rgba(154, 116, 79, 0.1); }
+body.light-mode .scroll-progress-bar { background: linear-gradient(90deg, #9c7758, #8e6c51); }
 
-body.light-mode .contact-link:hover {
-  background: #495057;
-  color: #fff;
-}
-
-body.light-mode .btn-primary { background: #495057; border-color: #495057; color: #fff; }
-body.light-mode .btn-primary:hover { background: #343a40; border-color: #343a40; }
-body.light-mode .btn-secondary { color: #495057; }
-body.light-mode .btn-secondary:hover { background: #495057; color: #fff; }
-
-body.light-mode .theme-toggle-btn { background: transparent; border: none; color: #495057; }
-body.light-mode .theme-toggle-btn:hover { background: transparent; }
-body.light-mode .theme-toggle-btn .dark-icon { display: none; }
-body.light-mode .theme-toggle-btn .light-icon { display: block; }
+/* Theme toggle Edison glow dimmer */
+body.light-mode .theme-toggle-btn { color: #826349; }
+body.light-mode .switch-thumb { box-shadow: 0 0 6px rgba(230, 182, 118, 0.45), 0 0 12px rgba(230, 182, 118, 0.25); }
 
 body.light-mode .element { color: #5c6b73; opacity: 0.7; }
 
@@ -507,4 +521,100 @@ a {
   h1 { font-size: 32px; }
   .hero-title { font-size: 32px; }
   .section-title { font-size: 22px; }
+}
+
+/* --- Rustic Dark Variant Overrides --- */
+body.rustic-mode {
+  background: #151312; /* dark, warm charcoal */
+  color: #d8d2ca;
+}
+
+body.rustic-mode #box {
+  background: #191715;
+  border: 1px solid #2b2521;
+}
+
+body.rustic-mode .section-title {
+  color: #efe9e0;
+  border-bottom: 1px solid #3a322c;
+}
+
+body.rustic-mode a { color: #c3a582; }
+body.rustic-mode a:hover { color: #e0bd93; }
+
+/* Rustic dark navbar: left-aligned, no pill background, slim underline */
+body.rustic-mode #navbar { justify-content: flex-start; padding-left: 36px; }
+body.rustic-mode ul {
+  background: transparent;
+  border: none;
+  backdrop-filter: none;
+  gap: 28px;
+  padding: 0;
+  border-radius: 0;
+}
+body.rustic-mode #navbar::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 52px;
+  height: 0; /* removed divider */
+  background: transparent;
+}
+body.rustic-mode li { letter-spacing: 0.12rem; }
+body.rustic-mode li:hover { border-bottom-color: #c3a582; }
+body.rustic-mode li.active { border-bottom-color: #c3a582; }
+body.rustic-mode li a { color: #d8d2ca; }
+body.rustic-mode li.active a { color: #e0bd93; }
+
+/* Buttons */
+body.rustic-mode .btn-primary {
+  background: #b08968;
+  border-color: #b08968;
+  color: #191715;
+}
+body.rustic-mode .btn-primary:hover { background: #a27d60; border-color: #a27d60; }
+body.rustic-mode .btn-secondary { color: #e0bd93; border-color: #c3a582; }
+body.rustic-mode .btn-secondary:hover { background: rgba(192, 149, 104, 0.16); color: #f1d8b5; }
+
+/* Cards */
+body.rustic-mode .project-card { background: #1b1816; border: 1px solid #2e2823; }
+body.rustic-mode .project-title { color: #efe9e0; }
+body.rustic-mode .project-description { color: #cbbfaa; }
+body.rustic-mode .project-overlay { background: rgba(22, 19, 17, 0.5); }
+
+/* Tags */
+body.rustic-mode .tech-tag { background: #171412; border: 1px solid #2e2823; color: #d5b391; }
+
+/* Contact */
+body.rustic-mode .contact-link { border: 1px solid #2e2823; color: #d5b391; }
+body.rustic-mode .contact-link:hover { background: #171412; color: #f1d8b5; }
+
+/* Theme toggle in rustic */
+body.rustic-mode .switch-track { background: rgba(192, 149, 104, 0.18); border-color: rgba(192, 149, 104, 0.22); }
+body.rustic-mode .switch-thumb { background: #c09568; color: #191715; }
+
+body.rustic-mode .hero-subtitle { color: #c3a582; }
+body.rustic-mode .theme-toggle-btn { color: #c3a582; }
+body.rustic-mode .scroll-progress { background: rgba(192, 149, 104, 0.15); }
+body.rustic-mode .scroll-progress-bar { background: linear-gradient(90deg, #c3a582, #a97f59); }
+
+body.rustic-mode .timeline-content h4 { color: #c3a582; }
+body.rustic-mode .skills-container h3 { color: #c3a582; }
+
+/* Position the theme toggle midway between the frame (#box) and screen edge
+   body padding is 60px → mid = 30px; track is 24px wide → offset ~18px */
+.theme-toggle { right: 18px; }
+
+/* Ensure visibility of sun icon in light mode */
+body.light-mode .switch-thumb { background: #e6b676; color: #2a2622; }
+body.light-mode .switch-thumb i { color: #2a2622; opacity: 0.95; font-size: 13px; }
+
+/* Slight outline for better visibility against bright backgrounds */
+body.light-mode .switch-thumb {
+  box-shadow: 0 0 6px rgba(230, 182, 118, 0.45), 0 0 12px rgba(230, 182, 118, 0.25),
+              0 0 0 1px rgba(42, 38, 34, 0.15) inset;
+}
+
+/* Keep mobile placement override as before */
+@media (max-width: 768px) {
+  .theme-toggle { right: 15px; }
 }

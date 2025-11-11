@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
     button.addEventListener('click', handleSmoothScroll);
   });
 
-    // Active section highlighting
+  // Active section highlighting
   const sections = document.querySelectorAll('.section');
   const navItems = document.querySelectorAll('.nav-item');
 
@@ -77,33 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
       this.style.transform = 'translateY(0)';
     });
   });
-
-  // Floating elements animation enhancement
-  const floatingElements = document.querySelectorAll('.element');
-
-  floatingElements.forEach((element, index) => {
-    element.addEventListener('mouseenter', function() {
-      this.style.animationPlayState = 'paused';
-      this.style.transform = 'scale(1.2) rotate(10deg)';
-    });
-
-    element.addEventListener('mouseleave', function() {
-      this.style.animationPlayState = 'running';
-      this.style.transform = '';
-    });
-  });
-
-  // Parallax effect for hero section
-  const heroSection = document.querySelector('#hero');
-  const floatingElementsContainer = document.querySelector('.floating-elements');
-
-  if (heroSection && floatingElementsContainer) {
-    window.addEventListener('scroll', function() {
-      const scrolled = window.pageYOffset;
-      const rate = scrolled * -0.5;
-      floatingElementsContainer.style.transform = `translateY(${rate}px)`;
-    });
-  }
 
   // Skill items animation
   const skillItems = document.querySelectorAll('.skill-item');
@@ -150,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
     timelineObserver.observe(item);
   });
 
-    // Contact links hover effect
+  // Contact links hover effect
   const contactLinks = document.querySelectorAll('.contact-link');
 
   contactLinks.forEach(link => {
@@ -176,19 +149,23 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Theme toggle functionality
+  // Theme toggle functionality (toggle rustic <-> light)
   const themeToggleBtn = document.getElementById('theme-toggle-btn');
   const body = document.body;
 
-  // Check for saved theme preference or default to dark
-  const currentTheme = localStorage.getItem('theme') || 'dark';
-  body.classList.toggle('light-mode', currentTheme === 'light');
+  function applyTheme(theme) {
+    body.classList.remove('light-mode', 'rustic-mode');
+    if (theme === 'light') body.classList.add('light-mode');
+    if (theme === 'rustic') body.classList.add('rustic-mode');
+  }
+
+  const storedTheme = localStorage.getItem('theme') || 'rustic';
+  applyTheme(storedTheme);
 
   themeToggleBtn.addEventListener('click', function() {
-    body.classList.toggle('light-mode');
-
-    // Save theme preference
-    const newTheme = body.classList.contains('light-mode') ? 'light' : 'dark';
-    localStorage.setItem('theme', newTheme);
+    const current = localStorage.getItem('theme') || 'rustic';
+    const next = current === 'rustic' ? 'light' : 'rustic';
+    applyTheme(next);
+    localStorage.setItem('theme', next);
   });
 });

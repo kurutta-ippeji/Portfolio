@@ -59,7 +59,7 @@ p {
 #box {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 99%;
   min-height: 100vh;
   padding: 5px;
   border: 1px solid #2a2f31; // thinner, subtler border
@@ -74,100 +74,62 @@ p {
 /* Theme Toggle */
 .theme-toggle {
   position: fixed;
-  top: 10px;
-  right: 0px;
+  top: 14px;
+  right: -4px; /* shifted slightly to the right */
   z-index: 1001;
 }
 
 .theme-toggle-btn {
-  background: transparent;
-  border: none;
-  width: auto;
-  height: auto;
+  background: #241f1a;
+  border: 1px solid #3d322a;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: color 0.2s ease;
-  color: #6aa0bd;
-  font-size: 20px;
-  padding: 8px;
-}
-
-/* Switch: make vertical like an Edison pull switch */
-.switch-track {
-  width: 24px; /* vertical */
-  height: 50px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  position: relative;
-  transition: background 0.2s ease;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.switch-thumb {
-  width: 20px;
-  height: 20px;
-  background: #6aa0bd; /* overridden per theme */
-  border-radius: 50%;
-  position: absolute;
-  top: 1px; /* rests at top by default (rustic/dark) */
-  left: 1px;
-  transition: top 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  color: #0f1416;
-}
-
-/* Rustic dark switch colors already defined below */
-
-/* Edison-like light mode: warmer bulb color and glow, thumb at bottom */
-body.light-mode .switch-track { background: rgba(164, 124, 87, 0.18); border-color: rgba(164, 124, 87, 0.22); }
-body.light-mode .switch-thumb {
-  background: #e6b676; /* warm filament */
-  color: #2a2622;
-  top: 29px; /* move down to simulate pull switch */
-  box-shadow: 0 0 10px rgba(230, 182, 118, 0.6), 0 0 20px rgba(230, 182, 118, 0.35);
-}
-
-/* Dark rustic switch */
-body.rustic-mode .switch-track { background: rgba(192, 149, 104, 0.18); border-color: rgba(192, 149, 104, 0.22); }
-body.rustic-mode .switch-thumb { background: #c09568; color: #191715; top: 1px; box-shadow: none; }
-
-body.light-mode .switch-track {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-body.light-mode .switch-thumb {
-  background: #6aa0bd;
-  left: 1px;
-}
-
-body.light-mode .switch-track {
-  background: rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-body.light-mode .switch-thumb {
-  background: #5c6b73;
-  left: 29px;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  color: #d8d2ca;
+  padding: 0;
 }
 
 .theme-toggle-btn:hover {
-  background: transparent;
-  transform: none;
+  background: #2d261f;
+  border-color: #4c3f33;
+  box-shadow: 0 0 6px rgba(192, 149, 104, 0.25);
 }
 
-.theme-toggle-btn .light-icon {
-  display: none;
+.theme-toggle-btn i {
+  font-size: 14px;
 }
 
-.theme-toggle-btn .dark-icon {
-  display: block;
+/* Rustic dark button appearance */
+body.rustic-mode .theme-toggle-btn {
+  background: #241f1a;
+  border: 1px solid #3d322a;
+  color: #d8d2ca;
 }
+
+/* Light mode button appearance */
+body.light-mode .theme-toggle-btn {
+  background: #d6c5ae;
+  border: 1px solid #b7a285;
+  color: #2f2924;
+  box-shadow: 0 0 6px rgba(230, 182, 118, 0.35);
+}
+
+body.light-mode .theme-toggle-btn:hover {
+  background: #cdb99f;
+  border-color: #a99171;
+  box-shadow: 0 0 10px rgba(230, 182, 118, 0.4);
+}
+
+.theme-toggle-btn .light-icon { display: none; }
+.theme-toggle-btn .dark-icon { display: block; }
+
+body.light-mode .theme-toggle-btn .light-icon { display: block; }
+body.light-mode .theme-toggle-btn .dark-icon { display: none; }
 
 /* Light mode styles */
 body.light-mode {
